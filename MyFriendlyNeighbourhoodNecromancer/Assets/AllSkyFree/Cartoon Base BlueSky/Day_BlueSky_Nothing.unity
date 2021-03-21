@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.114102125, g: 0.32948, b: 0.7109408, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &4
 LightmapSettings:
@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000001, guid: 38b6b4289210e3546924419738a007ba, type: 2}
-  m_LightingSettings: {fileID: 4890085278179872738, guid: e9e623ab93ce60940b0140fb50507ee7, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: d498402814f6d614197e57d60e285500, type: 2}
 --- !u!196 &5
 NavMeshSettings:
   serializedVersion: 2
@@ -163,16 +163,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22418418, guid: a4d020d60b18649af92bb2a05e00d513, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 99.399994
-      objectReference: {fileID: 0}
-    - target: {fileID: 22418418, guid: a4d020d60b18649af92bb2a05e00d513, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 44.600006
+      value: 44.59999
       objectReference: {fileID: 0}
     - target: {fileID: 22427676, guid: a4d020d60b18649af92bb2a05e00d513, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 45.100006
+      value: 45.09999
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4d020d60b18649af92bb2a05e00d513, type: 3}
