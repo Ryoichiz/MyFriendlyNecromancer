@@ -254,6 +254,7 @@ GameObject:
   - component: {fileID: 4602485016606360}
   - component: {fileID: 33425800964844086}
   - component: {fileID: 23741366576909278}
+  - component: {fileID: 7781043773022670917}
   m_Layer: 0
   m_Name: LOD_0_HouseWindows
   m_TagString: Untagged
@@ -324,6 +325,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &7781043773022670917
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1184940379364764}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300006, guid: 6f053ae833d41ef4aaadf4ef73f9cd75, type: 3}
 --- !u!1 &1272744696287120
 GameObject:
   m_ObjectHideFlags: 0
@@ -335,6 +350,8 @@ GameObject:
   - component: {fileID: 4562756319454902}
   - component: {fileID: 33318556950016704}
   - component: {fileID: 23923927476129952}
+  - component: {fileID: 382330703}
+  - component: {fileID: 456618241156046386}
   m_Layer: 0
   m_Name: LOD_0_HouseInterior
   m_TagString: Untagged
@@ -407,6 +424,33 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &382330703
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272744696287120}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.07849081, y: 4.8367386, z: 7.747854}
+  m_Center: {x: -0.08312335, y: -2.2545266, z: 3.9025052}
+--- !u!64 &456618241156046386
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272744696287120}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300008, guid: 6f053ae833d41ef4aaadf4ef73f9cd75, type: 3}
 --- !u!1 &1295638750784766
 GameObject:
   m_ObjectHideFlags: 0
@@ -1389,6 +1433,11 @@ GameObject:
   - component: {fileID: 4654605070355910}
   - component: {fileID: 33328406945190518}
   - component: {fileID: 23610792490912510}
+  - component: {fileID: 604892195}
+  - component: {fileID: 4530439008883781941}
+  - component: {fileID: 6255288089565769056}
+  - component: {fileID: 9142433558181748732}
+  - component: {fileID: 5542564449135883061}
   m_Layer: 0
   m_Name: LOD_0_WerandaWood
   m_TagString: Untagged
@@ -1460,6 +1509,72 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &604892195
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1538974187357688}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 8.0447445, y: 3.5835931, z: 0.08562121}
+  m_Center: {x: -2.3567677, y: -0.27371633, z: -0.04258847}
+--- !u!65 &4530439008883781941
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1538974187357688}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.9884466, y: 2.039959, z: 0.23372725}
+  m_Center: {x: 2.133232, y: 0.17818704, z: -0.115164034}
+--- !u!65 &6255288089565769056
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1538974187357688}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.80885166, y: 2.0703685, z: 0.35230124}
+  m_Center: {x: 3.0220559, y: 0.17229082, z: -0.38384768}
+--- !u!65 &9142433558181748732
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1538974187357688}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.42497253, y: 2.0306695, z: 0.298474}
+  m_Center: {x: 3.5911996, y: 0.20131637, z: -0.6719042}
+--- !u!64 &5542564449135883061
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1538974187357688}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300016, guid: 6f053ae833d41ef4aaadf4ef73f9cd75, type: 3}
 --- !u!1 &1557726994942572
 GameObject:
   m_ObjectHideFlags: 0
@@ -1686,7 +1801,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1667885095536142}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
@@ -1922,6 +2037,7 @@ GameObject:
   - component: {fileID: 4296963851191600}
   - component: {fileID: 33688354749444544}
   - component: {fileID: 23215184795830522}
+  - component: {fileID: 8909092533957138497}
   m_Layer: 0
   m_Name: LOD_0_SrubWood
   m_TagString: Untagged
@@ -1993,6 +2109,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &8909092533957138497
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1818305758079578}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300002, guid: 6f053ae833d41ef4aaadf4ef73f9cd75, type: 3}
 --- !u!1 &1860739784822904
 GameObject:
   m_ObjectHideFlags: 0

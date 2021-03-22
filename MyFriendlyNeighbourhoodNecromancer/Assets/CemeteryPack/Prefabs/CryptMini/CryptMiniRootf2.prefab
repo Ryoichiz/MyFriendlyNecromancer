@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 484276}
   - component: {fileID: 3332630}
   - component: {fileID: 2344340}
+  - component: {fileID: 9013923049624104779}
   m_Layer: 0
   m_Name: CryptMiniRootf2
   m_TagString: Untagged
@@ -81,3 +82,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &9013923049624104779
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 103972}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 4cdc7b55f59b2da45b2ef90c28ed1c94, type: 3}

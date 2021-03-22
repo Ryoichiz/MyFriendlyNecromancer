@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 432118}
   - component: {fileID: 3346264}
   - component: {fileID: 2320612}
+  - component: {fileID: 4469127944047593031}
   m_Layer: 0
   m_Name: CryptMiniCoffin1
   m_TagString: Untagged
@@ -81,3 +82,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &4469127944047593031
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 184800}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: c8805e0f0f0097743b5ed03284742dc0, type: 3}
