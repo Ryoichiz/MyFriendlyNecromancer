@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3359604}
   - component: {fileID: 2323654}
   - component: {fileID: -1257389438098322420}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: CryptMiniWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,9 +26,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 188116}
-  m_LocalRotation: {x: 0.000000081460335, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -33.940624, y: -3.5878124, z: -25.748945}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalScale: {x: 99.999985, y: 100, z: 99.999985}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0

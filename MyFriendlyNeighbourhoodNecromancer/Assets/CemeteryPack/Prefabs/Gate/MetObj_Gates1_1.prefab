@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3343176}
   - component: {fileID: 2320808}
   - component: {fileID: 6436640}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: MetObj_Gates1_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,13 +26,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 185226}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071067}
+  m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.7072302}
   m_LocalPosition: {x: 0.09720209, y: 1.3639727, z: -16.648872}
   m_LocalScale: {x: 141.64078, y: 141.64078, z: 141.64078}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: 0}
 --- !u!33 &3343176
 MeshFilter:
   m_ObjectHideFlags: 0

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3375828}
   - component: {fileID: 2390534}
   - component: {fileID: 6507810}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ColumnCrypt2 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 130780}
-  m_LocalRotation: {x: 0.000000081460335, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 9.618927, y: -10.65625, z: -7.23}
   m_LocalScale: {x: 70.89052, y: 70.89052, z: 70.89052}
   m_Children: []

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3375516}
   - component: {fileID: 2368000}
   - component: {fileID: 6446774}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ColumnGateArch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 137876}
-  m_LocalRotation: {x: 0.00000008146034, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.1872021, y: -6.0160275, z: -28.118872}
   m_LocalScale: {x: 29.538551, y: 29.538551, z: 29.538551}
   m_Children: []

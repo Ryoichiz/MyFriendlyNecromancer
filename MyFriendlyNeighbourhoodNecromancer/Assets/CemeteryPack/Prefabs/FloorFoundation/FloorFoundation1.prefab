@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3324646}
   - component: {fileID: 2381060}
   - component: {fileID: 6579638}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FloorFoundation1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 145896}
-  m_LocalRotation: {x: 0.000000081460335, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 13.498924, y: -10.65625, z: 50.207813}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []

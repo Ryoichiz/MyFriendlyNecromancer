@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3320392}
   - component: {fileID: 2324110}
   - component: {fileID: 6552068}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ColumnCrypt4 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,13 +26,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 126184}
-  m_LocalRotation: {x: 9.75664e-12, y: 1, z: -0.00000008146041, w: 0.00012007356}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0.00012237017}
   m_LocalPosition: {x: 10.756058, y: -10.65625, z: 6.8748474}
-  m_LocalScale: {x: 69.13189, y: 69.13189, z: 69.1319}
+  m_LocalScale: {x: 69.1319, y: 69.13189, z: 69.131905}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 179.986, z: 0}
 --- !u!33 &3320392
 MeshFilter:
   m_ObjectHideFlags: 0
