@@ -25,7 +25,7 @@ public class VilligerPatrol : MonoBehaviour
 	GameObject ParentPoint;
 
 	// Waypoints for agent to follow
-	private List<WayPoint> _points;
+	private List<WayPoint> _points = new List<WayPoint>();
 
 	// Animations for character
 	[SerializeField]
@@ -57,7 +57,7 @@ public class VilligerPatrol : MonoBehaviour
 		ParentPoint = GameObject.Find("VillageWaypoints");
 		foreach (Transform child in ParentPoint.transform)
 		{
-			_points.Append(child.gameObject.GetComponent<WayPoint>());
+			_points.Add(child.gameObject.GetComponent<WayPoint>());
 		}
 		if (_navMeshCharacter == null)
 		{
@@ -80,8 +80,40 @@ public class VilligerPatrol : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    }
+		if (_walkingState && _navMeshCharacter.remainingDistance <= _stopDistance && !_attackingState && !_swingState)
+		{
+			_walkingState = false;
+
+			//Checking if agent needs to wait
+			if (_patrolStationary)
+			{
+				_animate.SetBool("IsStanding", true);
+				_stationaryState = true;
+				_Timer = 0f;
+			}
+			else
+			{
+				_animate.SetBool("IsWalking", true);
+				ChangeDestination();
+				SetDestination();
+			}
+		}
+
+		//State if we are waiting
+		if (_stationaryState && !_attackingState)
+		{
+			_Timer += Time.deltaTime;
+			_animate.SetBool("IsWalking", false);
+			if (_Timer >= _waitingTime)
+			{
+
+				_stationaryState = false;
+				_animate.SetBool("IsStanding", false);
+				ChangeDestination();
+				SetDestination();
+			}
+		}
+	}
 
 	private void SetDestination()
 	{

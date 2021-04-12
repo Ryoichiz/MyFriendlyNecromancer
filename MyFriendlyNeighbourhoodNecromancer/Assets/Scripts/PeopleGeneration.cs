@@ -24,8 +24,8 @@ public class PeopleGeneration : MonoBehaviour
         }
         for(int i = 0; i < Amount; i++)
         {
-            RngH = Random.Range(0, SpawningSpots.Length-1);
-            RngNPC = Random.Range(0, NPCs.Length-1);
+            RngH = Random.Range(0, SpawningSpots.Length);
+            RngNPC = Random.Range(0, NPCs.Length);
             Instantiate(NPCs[RngNPC], SpawningSpots[RngH], Quaternion.identity);
         }
     }
