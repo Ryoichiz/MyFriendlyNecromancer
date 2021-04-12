@@ -14,7 +14,6 @@ public class PlayerMovement : MonoBehaviour
 	private float m_Speed = 0.0f;
 
 	private CharacterController m_CharacterController = null;
-	private Transform m_CameraRig = null;
 	[SerializeField] Transform m_Head;
 
 	private void Awake()

@@ -5,6 +5,9 @@ using UnityEngine.AI;
 
 public class NPCpatrol : MonoBehaviour
 {
+	[SerializeField]
+	LayerMask PlayerLayer;
+
 	// Shows if agent is going to stop on each waypoint
 	[SerializeField]
 	bool _patrolStationary;
@@ -21,11 +24,17 @@ public class NPCpatrol : MonoBehaviour
 	[SerializeField]
 	List<WayPoint> _points;
 
+	// Animations for character
 	[SerializeField]
 	Animator _animate;
 
+	// Detection distance
 	[SerializeField]
-	float _maxDistance = 1;
+	float _maxDistance = 1f;
+
+	// Character stopping distance
+	[SerializeField]
+	float _stopDistance = 1.0f;
 
 	NavMeshAgent _navMeshCharacter;
 	Transform Player;
@@ -34,20 +43,21 @@ public class NPCpatrol : MonoBehaviour
 	bool _walkingState;
 	bool _patrolForwardState;
 	bool _attackingState;
+	bool _swingState;
 	float _Timer;
-    // Start is called before the first frame update
-    void Start()
-    {
+	// Start is called before the first frame update
+	void Start()
+	{
 		_navMeshCharacter = this.GetComponent<NavMeshAgent>();
 		_animate = this.GetComponent<Animator>();
 		Player = GameObject.Find("Player").transform;
-		if(_navMeshCharacter == null)
+		if (_navMeshCharacter == null)
 		{
 			Debug.LogError("The nav mesh agent component is not attached to " + gameObject.name);
 		}
 		else
 		{
-			if(_points != null && _points.Count >= 2)
+			if (_points != null && _points.Count >= 2)
 			{
 				_currentPoint = 0;
 				SetDestination();
@@ -57,25 +67,25 @@ public class NPCpatrol : MonoBehaviour
 				Debug.Log("Not enough of waypoints for an agent");
 			}
 		}
-    }
+	}
 
-    // Update is called once per frame
-    void Update()
-    {
+	// Update is called once per frame
+	void Update()
+	{
+		//Player detection
 		RaycastHit hit;
 		Vector3 direction = Player.position - this.gameObject.transform.position;
 		if (Physics.Raycast(transform.position, direction, out hit, Mathf.Infinity))
 		{
-			if (hit.distance < _maxDistance)
+			if (hit.distance < _maxDistance && hit.transform.gameObject.layer == PlayerLayer)
 			{
 				float angel = Vector3.Angle(transform.position, direction);
+				Debug.DrawRay(transform.position, direction, Color.red);
 				if (Mathf.Abs(angel) > 90)
 				{
+					Debug.Log(hit.distance.ToString());
 					Debug.DrawRay(transform.position, direction, Color.green);
-					_animate.SetBool("IsStanding", false);
-					_animate.SetBool("IsWalking", false);
-					_animate.SetBool("IsSprinting", true);
-					_attackingState = true;
+					SetAttackDestination(hit.point);
 				}
 			}
 			else
@@ -83,14 +93,27 @@ public class NPCpatrol : MonoBehaviour
 				_animate.SetBool("IsSprinting", false);
 				Debug.DrawRay(transform.position, direction, Color.red);
 			}
+			Debug.DrawRay(transform.position, direction, Color.red);
+		}
+		//Checking if patrol is close enough to player
+		if (_attackingState && _navMeshCharacter.remainingDistance <= _stopDistance)
+		{
+			_attackingState = false;
+			_swingState = true;
+			_animate.SetBool("IsAttacking", true);
+		}
+		else
+		{
+			_swingState = false;
+			_animate.SetBool("isAttacking", false);
 		}
 		//Checking distance from waypoint
-        if(_walkingState && _navMeshCharacter.remainingDistance <= 1.0f)
+		if (_walkingState && _navMeshCharacter.remainingDistance <= _stopDistance && !_attackingState && !_swingState)
 		{
 			_walkingState = false;
 
 			//Checking if agent needs to wait
-			if(_patrolStationary)
+			if (_patrolStationary)
 			{
 				_animate.SetBool("IsStanding", true);
 				_stationaryState = true;
@@ -105,24 +128,24 @@ public class NPCpatrol : MonoBehaviour
 		}
 
 		//State if we are waiting
-		if(_stationaryState)
+		if (_stationaryState && !_attackingState)
 		{
 			_Timer += Time.deltaTime;
 			_animate.SetBool("IsWalking", false);
 			if (_Timer >= _waitingTime)
 			{
-				
+
 				_stationaryState = false;
 				_animate.SetBool("IsStanding", false);
 				ChangeDestination();
 				SetDestination();
 			}
 		}
-    }
+	}
 
 	private void SetDestination()
 	{
-		if(_points != null)
+		if (_points != null)
 		{
 			Vector3 targetVector = _points[_currentPoint].transform.position;
 			_navMeshCharacter.SetDestination(targetVector);
@@ -131,8 +154,15 @@ public class NPCpatrol : MonoBehaviour
 		}
 	}
 
-	// Changes next patrol point into a different one, making agent not always predictable
-	// allowing agent to walk forward and backward
+	private void SetAttackDestination(Vector3 target)
+	{
+		_animate.SetBool("IsStanding", false);
+		_animate.SetBool("IsWalking", false);
+		_navMeshCharacter.SetDestination(target);
+		_attackingState = true;
+		_animate.SetBool("IsSprinting", true);
+	}
+
 	private void ChangeDestination()
 	{
 		if (UnityEngine.Random.Range(0f, 1f) <= _changingProbability)
