@@ -9,64 +9,76 @@ public class SnappingLocation : MonoBehaviour
 {
     private LayerMask layer = 12;
 
-    public SteamVR_Action_Boolean m_GrabAction = null;
-
-    private SteamVR_Behaviour_Pose m_Pose = null;
+	public string snapTag;
     private Interactable m_CurrentInteractable = null;
-    private List<Interactable> m_ContactInteractables = new List<Interactable>();
     private bool objCheck;
+	private string _objname;
+	
 
     // Start is called before the first frame update
     void Start()
     {
-        m_Pose = GetComponent<SteamVR_Behaviour_Pose>();
-        bool objCheck = false;
+        objCheck = false;
+		_objname = "";
     }
 
     // Update is called once per frame
-    private void OnTriggerStay(Collider other)
-    {
-        //Down
-        if (m_GrabAction.GetStateUp(m_Pose.inputSource) && objCheck)
-        {
-            Place(other);
-        }
-        //Up
-        if (m_GrabAction.GetStateDown(m_Pose.inputSource) && objCheck)
-        {
-            Pickup(other);
-        }
-    }
+    //private void OnTriggerStay(Collider other)
+    //{
+    //    //Down
+    //    if (m_GrabAction.GetStateUp(m_Pose.inputSource) && objCheck)
+    //    {
+    //        Place(other);
+    //    }
+    //    //Up
+    //    if (m_GrabAction.GetStateDown(m_Pose.inputSource) && objCheck)
+    //    {
+    //        Pickup(other);
+    //    }
+    //}
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer != layer)
-        {
-            return;
-        }
-        m_ContactInteractables.Add(other.gameObject.GetComponent<Interactable>());
+		if ((other.gameObject.layer == layer) && !objCheck && !other.gameObject.GetComponent<Interactable>().attachedToHand)
+		{
+			if (_objname.Equals("") && other.gameObject.CompareTag(snapTag))
+			{
+				Place(other);
+			}
+		}
+
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.layer != layer)
-        {
-            return;
-        }
-        m_ContactInteractables.Remove(other.gameObject.GetComponent<Interactable>());
-        objCheck = true;
-    }
+	private void OnTriggerExit(Collider other)
+	{
+		if ((other.gameObject.layer == layer && objCheck))
+		{
+			if (_objname == other.gameObject.name)
+			{
+				Pickup(other);
+			}
+		}
+	}
 
     public void Pickup(Collider other)
     {
-        m_ContactInteractables.Add(other.gameObject.GetComponent<Interactable>());
-    }
+		Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();
+		rb.useGravity = true;
+		rb.isKinematic = false;
+		objCheck = false;
+		_objname = "";
+	}
 
     public void Place(Collider other)
     {
-        other.gameObject.transform.position = this.gameObject.transform.position;
+		Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();
+		rb.useGravity = false;
+		rb.isKinematic = true;
+		other.gameObject.transform.position = this.gameObject.transform.position;
         other.gameObject.transform.rotation = this.gameObject.transform.rotation;
-        other.gameObject.transform.localScale = this.gameObject.transform.localScale;
+        //other.gameObject.transform.localScale = this.gameObject.transform.localScale;
+		objCheck = true;
+		_objname = other.gameObject.name;
     }
 
 
