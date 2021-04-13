@@ -18,7 +18,7 @@ public class PeopleGeneration : MonoBehaviour
         SpawningSpots = new Vector3[Spot.transform.childCount];
         foreach (Transform child in Spot.transform)
         {
-            Debug.Log(child.localPosition.x);
+            //Debug.Log(child.localPosition.x);
             SpawningSpots[j] = new Vector3(child.position.x, child.position.y, child.position.z);
             j++;
         }

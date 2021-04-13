@@ -7,7 +7,7 @@ using Valve.VR.InteractionSystem;
 
 public class SnappingLocation : MonoBehaviour
 {
-    private LayerMask layer = 12;
+    public int layer = 12;
 
 	public string snapTag;
     private Interactable m_CurrentInteractable = null;
@@ -22,41 +22,28 @@ public class SnappingLocation : MonoBehaviour
 		_objname = "";
     }
 
-    // Update is called once per frame
-    //private void OnTriggerStay(Collider other)
-    //{
-    //    //Down
-    //    if (m_GrabAction.GetStateUp(m_Pose.inputSource) && objCheck)
-    //    {
-    //        Place(other);
-    //    }
-    //    //Up
-    //    if (m_GrabAction.GetStateDown(m_Pose.inputSource) && objCheck)
-    //    {
-    //        Pickup(other);
-    //    }
-    //}
-
     private void OnTriggerEnter(Collider other)
     {
-		if ((other.gameObject.layer == layer) && !objCheck && !other.gameObject.GetComponent<Interactable>().attachedToHand)
+		if (other.gameObject.layer == layer)
 		{
-			if (_objname.Equals("") && other.gameObject.CompareTag(snapTag))
+			//Debug.Log("Layer passed");
+			if (!objCheck && !other.gameObject.GetComponent<Interactable>().attachedToHand)
 			{
-				Place(other);
+				//Debug.Log("Checking tag");
+				if (_objname.Equals("") && other.gameObject.CompareTag(snapTag))
+				{
+					//Debug.Log("Tag passed");
+					Place(other);
+				}
 			}
 		}
-
     }
 
 	private void OnTriggerExit(Collider other)
 	{
-		if ((other.gameObject.layer == layer && objCheck))
+		if (other.gameObject.layer == layer && objCheck)
 		{
-			if (_objname == other.gameObject.name)
-			{
-				Pickup(other);
-			}
+			Pickup(other);
 		}
 	}
 
@@ -76,7 +63,6 @@ public class SnappingLocation : MonoBehaviour
 		rb.isKinematic = true;
 		other.gameObject.transform.position = this.gameObject.transform.position;
         other.gameObject.transform.rotation = this.gameObject.transform.rotation;
-        //other.gameObject.transform.localScale = this.gameObject.transform.localScale;
 		objCheck = true;
 		_objname = other.gameObject.name;
     }

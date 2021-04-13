@@ -7321,6 +7321,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b85f6e3cc0919ad46921eedfac9ab070, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layer:
+    serializedVersion: 2
+    m_Bits: 12
   snapTag: ArmPart
 --- !u!65 &266531922
 BoxCollider:
@@ -8281,7 +8284,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4767104266742096, guid: ad738a6f9b3f1054e96395e09e05cad0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -38.24
+      value: -38.988
       objectReference: {fileID: 0}
     - target: {fileID: 4767104266742096, guid: ad738a6f9b3f1054e96395e09e05cad0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -16148,6 +16151,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b85f6e3cc0919ad46921eedfac9ab070, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layer:
+    serializedVersion: 2
+    m_Bits: 12
   snapTag: ChestPart
 --- !u!65 &660422590
 BoxCollider:
@@ -19449,6 +19455,76 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 516495b6dbb4c2c46920ae41ff63a7c5, type: 3}
+--- !u!1 &818998200
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 818998201}
+  - component: {fileID: 818998203}
+  - component: {fileID: 818998202}
+  - component: {fileID: 818998204}
+  m_Layer: 0
+  m_Name: BackpackTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &818998201
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818998200}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.181}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_Children: []
+  m_Father: {fileID: 1848382161}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &818998202
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818998200}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &818998203
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818998200}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &818998204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818998200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b85f6e3cc0919ad46921eedfac9ab070, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layer:
+    serializedVersion: 2
+    m_Bits: 2048
+  snapTag: Shovel
 --- !u!1001 &822501174
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34144,6 +34220,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b85f6e3cc0919ad46921eedfac9ab070, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layer:
+    serializedVersion: 2
+    m_Bits: 12
   snapTag: LegPart
 --- !u!65 &1460332144
 BoxCollider:
@@ -34572,6 +34651,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b85f6e3cc0919ad46921eedfac9ab070, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layer:
+    serializedVersion: 2
+    m_Bits: 12
   snapTag: HeadPart
 --- !u!65 &1471078178
 BoxCollider:
@@ -42823,6 +42905,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b85f6e3cc0919ad46921eedfac9ab070, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layer:
+    serializedVersion: 2
+    m_Bits: 12
   snapTag: LegPart
 --- !u!65 &1809574226
 BoxCollider:
@@ -43688,6 +43773,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4634338707192380, guid: 3b93b5e1490544e968467686126aa217, type: 3}
   m_PrefabInstance: {fileID: 1848277837}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1848382161 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 429506, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
+  m_PrefabInstance: {fileID: 948731470}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1849828224
 PrefabInstance:
@@ -46704,6 +46794,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b85f6e3cc0919ad46921eedfac9ab070, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layer:
+    serializedVersion: 2
+    m_Bits: 12
   snapTag: ArmPart
 --- !u!65 &2007719137
 BoxCollider:

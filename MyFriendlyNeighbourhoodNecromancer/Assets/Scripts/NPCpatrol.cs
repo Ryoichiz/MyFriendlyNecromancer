@@ -50,7 +50,7 @@ public class NPCpatrol : MonoBehaviour
 	{
 		_navMeshCharacter = this.GetComponent<NavMeshAgent>();
 		_animate = this.GetComponent<Animator>();
-		Player = GameObject.Find("Player").transform;
+		Player = GameObject.Find("HeadCollider").transform;
 		if (_navMeshCharacter == null)
 		{
 			Debug.LogError("The nav mesh agent component is not attached to " + gameObject.name);
