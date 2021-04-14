@@ -8,7 +8,9 @@ public class BackPackSnapping : MonoBehaviour
 {
 	public int layer = 12;
 
-	public string snapTag;
+	[SerializeField]
+	SteamVR_Action_Boolean m_GripAction = null;
+
 	private Interactable m_CurrentInteractable = null;
 	private string _objname;
 	private int _currentSlots = 4;
@@ -23,20 +25,18 @@ public class BackPackSnapping : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
-		if (other.gameObject.layer == layer)
+		//SteamVR_Input_Sources hand = other.gameObject.GetComponent<Interactable>().attachedToHand.handType;
+		//&& m_GripAction.GetLastStateDown(hand)
+		if (!other.gameObject.GetComponent<Interactable>().attachedToHand && other.gameObject.layer == layer )
 		{
-			Debug.Log("Layer passed");
-			if (!other.gameObject.GetComponent<Interactable>().attachedToHand)
+			Debug.Log("Checking tag");
+			if (_container.Count <= _currentSlots && !_container.Contains(other.gameObject))
 			{
-				Debug.Log("Checking tag");
-				if (other.gameObject.CompareTag(snapTag) && _container.Count <= _currentSlots && !_container.Contains(other.gameObject))
+				Debug.Log("Tag passed");
+				Place(other);
+				if (_container.Count != 0)
 				{
-					Debug.Log("Tag passed");
-					Place(other);
-					if(_container.Count != 0)
-					{
-						_previous = _container[_container.Count-1];
-					}
+					_previous = _container[_container.Count - 1];
 				}
 			}
 		}
@@ -72,6 +72,8 @@ public class BackPackSnapping : MonoBehaviour
 			_objname = temp.name;
 		}
 		_container.Remove(other.gameObject);
+		Vector3 scaledown = new Vector3(0.009999998f, 0.01f, 0.009999998f);
+		other.gameObject.transform.localScale = scaledown;
 	}
 
 	public void Place(Collider other)

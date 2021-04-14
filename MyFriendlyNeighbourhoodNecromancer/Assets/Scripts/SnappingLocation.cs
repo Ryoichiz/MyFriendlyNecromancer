@@ -27,7 +27,7 @@ public class SnappingLocation : MonoBehaviour
 		if (other.gameObject.layer == layer)
 		{
 			//Debug.Log("Layer passed");
-			if (!objCheck && !other.gameObject.GetComponent<Interactable>().attachedToHand)
+			if (other.gameObject.CompareTag(snapTag) && !objCheck && !other.gameObject.GetComponent<Interactable>().attachedToHand)
 			{
 				//Debug.Log("Checking tag");
 				if (_objname.Equals("") && other.gameObject.CompareTag(snapTag))
@@ -50,7 +50,6 @@ public class SnappingLocation : MonoBehaviour
     public void Pickup(Collider other)
     {
 		Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();
-		rb.useGravity = true;
 		rb.isKinematic = false;
 		objCheck = false;
 		_objname = "";
@@ -59,7 +58,6 @@ public class SnappingLocation : MonoBehaviour
     public void Place(Collider other)
     {
 		Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();
-		rb.useGravity = false;
 		rb.isKinematic = true;
 		other.gameObject.transform.position = this.gameObject.transform.position;
         other.gameObject.transform.rotation = this.gameObject.transform.rotation;
@@ -67,5 +65,9 @@ public class SnappingLocation : MonoBehaviour
 		_objname = other.gameObject.name;
     }
 
+	public bool IsSnapped()
+	{
+		return objCheck;
+	}
 
 }

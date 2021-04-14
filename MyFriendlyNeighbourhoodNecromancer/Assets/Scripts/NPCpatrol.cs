@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class NPCpatrol : MonoBehaviour
 {
 	[SerializeField]
-	LayerMask PlayerLayer;
+	int PlayerLayer;
 
 	// Shows if agent is going to stop on each waypoint
 	[SerializeField]
@@ -77,13 +77,15 @@ public class NPCpatrol : MonoBehaviour
 		Vector3 direction = Player.position - this.gameObject.transform.position;
 		if (Physics.Raycast(transform.position, direction, out hit, Mathf.Infinity))
 		{
+			//Debug.Log(hit.transform.gameObject.layer);
 			if (hit.distance < _maxDistance && hit.transform.gameObject.layer == PlayerLayer)
 			{
 				float angel = Vector3.Angle(transform.position, direction);
 				Debug.DrawRay(transform.position, direction, Color.red);
-				if (Mathf.Abs(angel) > 90)
+				Debug.Log(angel);
+				if (Mathf.Abs(angel) > 110)
 				{
-					Debug.Log(hit.distance.ToString());
+					//Debug.Log(hit.distance.ToString());
 					Debug.DrawRay(transform.position, direction, Color.green);
 					SetAttackDestination(hit.point);
 				}
@@ -98,47 +100,51 @@ public class NPCpatrol : MonoBehaviour
 		//Checking if patrol is close enough to player
 		if (_attackingState && _navMeshCharacter.remainingDistance <= _stopDistance)
 		{
-			_attackingState = false;
 			_swingState = true;
+			_animate.SetBool("IsSprinting", false);
 			_animate.SetBool("IsAttacking", true);
 		}
 		else
 		{
+			_attackingState = false;
 			_swingState = false;
 			_animate.SetBool("isAttacking", false);
 		}
 		//Checking distance from waypoint
-		if (_walkingState && _navMeshCharacter.remainingDistance <= _stopDistance && !_attackingState && !_swingState)
+		if (!_attackingState && !_swingState)
 		{
-			_walkingState = false;
-
-			//Checking if agent needs to wait
-			if (_patrolStationary)
+			if (_walkingState && _navMeshCharacter.remainingDistance <= _stopDistance)
 			{
-				_animate.SetBool("IsStanding", true);
-				_stationaryState = true;
-				_Timer = 0f;
+				_walkingState = false;
+
+				//Checking if agent needs to wait
+				if (_patrolStationary)
+				{
+					_animate.SetBool("IsStanding", true);
+					_stationaryState = true;
+					_Timer = 0f;
+				}
+				else
+				{
+					_animate.SetBool("IsWalking", true);
+					ChangeDestination();
+					SetDestination();
+				}
 			}
-			else
-			{
-				_animate.SetBool("IsWalking", true);
-				ChangeDestination();
-				SetDestination();
-			}
-		}
 
-		//State if we are waiting
-		if (_stationaryState && !_attackingState)
-		{
-			_Timer += Time.deltaTime;
-			_animate.SetBool("IsWalking", false);
-			if (_Timer >= _waitingTime)
+			//State if we are waiting
+			if (_stationaryState)
 			{
+				_Timer += Time.deltaTime;
+				_animate.SetBool("IsWalking", false);
+				if (_Timer >= _waitingTime)
+				{
 
-				_stationaryState = false;
-				_animate.SetBool("IsStanding", false);
-				ChangeDestination();
-				SetDestination();
+					_stationaryState = false;
+					_animate.SetBool("IsStanding", false);
+					ChangeDestination();
+					SetDestination();
+				}
 			}
 		}
 	}

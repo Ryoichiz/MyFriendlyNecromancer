@@ -112,7 +112,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShardsObject: {fileID: 1890151923002161041}
-  Parts: []
+  Parts:
+  - {fileID: 165676705607139763, guid: b71c4daf2ac75d74fb05e4ca93d8ecc6, type: 3}
+  - {fileID: 3683221875399719139, guid: babe3bf3a054bfe4fa6779300c3c0769, type: 3}
+  - {fileID: 2557877387663418721, guid: fc1c6b9dc4c97224cb9958f341704e54, type: 3}
+  - {fileID: 104942451621767546, guid: 118daceea1975df4fb4eb0980c56fce7, type: 3}
+  - {fileID: 3760687959418518622, guid: f683c18e65e0c4f4eab96980e6a090ec, type: 3}
 --- !u!54 &1424040809
 Rigidbody:
   m_ObjectHideFlags: 0
