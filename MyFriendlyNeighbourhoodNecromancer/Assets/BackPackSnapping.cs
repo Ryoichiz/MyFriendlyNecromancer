@@ -8,14 +8,12 @@ public class BackPackSnapping : MonoBehaviour
 {
 	public int layer = 12;
 
-	[SerializeField]
-	SteamVR_Action_Boolean m_GripAction = null;
-
 	private Interactable m_CurrentInteractable = null;
 	private string _objname;
 	private int _currentSlots = 4;
 	private List<GameObject> _container = new List<GameObject>();
 	private GameObject _previous = null;
+	private Collider currentOther;
 
 	// Start is called before the first frame update
 	void Start()
@@ -23,22 +21,39 @@ public class BackPackSnapping : MonoBehaviour
 		_objname = "";
 	}
 
-	private void OnTriggerEnter(Collider other)
+	private void Update()
 	{
-		//SteamVR_Input_Sources hand = other.gameObject.GetComponent<Interactable>().attachedToHand.handType;
-		//&& m_GripAction.GetLastStateDown(hand)
-		if (!other.gameObject.GetComponent<Interactable>().attachedToHand && other.gameObject.layer == layer )
+		if(_container.Count != 0)
 		{
-			Debug.Log("Checking tag");
-			if (_container.Count <= _currentSlots && !_container.Contains(other.gameObject))
+			if(_container[_container.Count - 1].transform.position != this.gameObject.transform.position)
 			{
-				Debug.Log("Tag passed");
-				Place(other);
+				Pickup(_container[_container.Count - 1].GetComponent<Collider>());
 				if (_container.Count != 0)
 				{
 					_previous = _container[_container.Count - 1];
 				}
 			}
+		}
+		if (currentOther.gameObject.layer == layer && !currentOther.gameObject.GetComponent<Interactable>().attachedToHand)
+		{
+			//Debug.Log("Checking tag");
+			if (_container.Count <= _currentSlots && !_container.Contains(currentOther.gameObject))
+			{
+				//Debug.Log("Tag passed");
+				Place(currentOther);
+				if (_container.Count != 0)
+				{
+					_previous = _container[_container.Count - 1];
+				}
+			}
+		}
+	}
+
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.gameObject.GetComponent<Interactable>())
+		{
+			currentOther = other;
 		}
 	}
 
@@ -48,11 +63,16 @@ public class BackPackSnapping : MonoBehaviour
 		{
 			if (_objname == other.gameObject.name && other.gameObject.GetComponent<Interactable>().attachedToHand)
 			{
-				Debug.Log("Changing");
+				Debug.Log("Changing back");
 				Pickup(other);
 				if(_container.Count != 0)
 				{
 					_previous = _container[_container.Count - 1];
+					currentOther = _previous.gameObject.GetComponent<Collider>();
+				}
+				else
+				{
+					currentOther = null;
 				}
 			}
 		}

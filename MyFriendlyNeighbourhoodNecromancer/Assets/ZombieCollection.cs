@@ -35,12 +35,17 @@ public class ZombieCollection : MonoBehaviour
     {
         if(SnapLocations[1].GetComponent<SnappingLocation>().IsSnapped() && SnapLocations[2].GetComponent<SnappingLocation>().IsSnapped() && !_legs)
 		{
+			SnapLocations[1].SetActive(false);
+			SnapLocations[2].SetActive(false);
 			Instantiate(Bottom, SpawnLegs.position, Quaternion.identity);
 			_legs = true;
 		}
 		if(SnapLocations[3].GetComponent<SnappingLocation>().IsSnapped() && SnapLocations[4].GetComponent<SnappingLocation>().IsSnapped() &&
 			SnapLocations[5].GetComponent<SnappingLocation>().IsSnapped() && !_torso)
 		{
+			SnapLocations[3].SetActive(false);
+			SnapLocations[4].SetActive(false);
+			SnapLocations[5].SetActive(false);
 			Instantiate(Torso, SpawnTorso.position, Quaternion.identity);
 			_torso = true;
 		}

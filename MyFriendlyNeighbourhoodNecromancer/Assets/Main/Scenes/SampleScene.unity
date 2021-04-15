@@ -7328,7 +7328,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &273095220
 PrefabInstance:
@@ -8432,13 +8432,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 320132056}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.397, y: -3.743, z: 3.664}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: -6.6, y: -4.168, z: 3.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 33329723}
   m_RootOrder: 18
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!1001 &322225540
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16196,7 +16196,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &662219765
 GameObject:
@@ -19512,7 +19512,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 818998200}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.083}
+  m_LocalPosition: {x: 0, y: -0.125, z: -0.163}
   m_LocalScale: {x: 0.63079125, y: 0.62203044, z: 0.35458517}
   m_Children: []
   m_Father: {fileID: 1848382161}
@@ -19552,9 +19552,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   layer: 12
-  m_GripAction:
-    actionPath: /actions/default/in/GrabGrip
-    needsReinit: 0
 --- !u!1001 &822501174
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31338,7 +31335,7 @@ GameObject:
   - component: {fileID: 59}
   - component: {fileID: 1373567524}
   - component: {fileID: 6}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: Shovel_lowp_UV_Group1
   m_TagString: Shovel
   m_Icon: {fileID: 0}
@@ -34269,13 +34266,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1460332141}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0203, y: 0.0078, z: 0.0351}
+  m_LocalRotation: {x: -0.7071068, y: -0.7071068, z: 0, w: 0}
+  m_LocalPosition: {x: -0.0203, y: 0.0112, z: 0.0351}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
   m_Father: {fileID: 503832588}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -180, y: 0, z: -90}
 --- !u!114 &1460332143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34301,7 +34298,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1461768406
 PrefabInstance:
@@ -34752,7 +34749,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1480934407
 PrefabInstance:
@@ -43275,13 +43272,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1809574223}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0203, y: -0.0069, z: 0.0351}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: -0.0203, y: -0.0113, z: 0.0351}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
   m_Father: {fileID: 503832588}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!114 &1809574225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43307,7 +43304,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1810898631
 PrefabInstance:
@@ -47194,7 +47191,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &2009051776
 PrefabInstance:
@@ -47289,7 +47286,7 @@ GameObject:
   - component: {fileID: 2009417566}
   - component: {fileID: 2009417565}
   - component: {fileID: 2009417564}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: Shovel_lowp_UV_Group2
   m_TagString: Shovel
   m_Icon: {fileID: 0}
@@ -50806,6 +50803,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1107365664509998162, guid: fc1c6b9dc4c97224cb9958f341704e54, type: 3}
+      propertyPath: attachmentFlags
+      value: 81
+      objectReference: {fileID: 0}
     - target: {fileID: 2557877387663418721, guid: fc1c6b9dc4c97224cb9958f341704e54, type: 3}
       propertyPath: m_Name
       value: M_LeftLeg
@@ -50994,6 +50995,10 @@ PrefabInstance:
     - target: {fileID: 650570836519230217, guid: b71c4daf2ac75d74fb05e4ca93d8ecc6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2326601880251460171, guid: b71c4daf2ac75d74fb05e4ca93d8ecc6, type: 3}
+      propertyPath: attachmentFlags
+      value: 81
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b71c4daf2ac75d74fb05e4ca93d8ecc6, type: 3}

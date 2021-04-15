@@ -12,17 +12,28 @@ public class SnappingLocation : MonoBehaviour
 	public string snapTag;
     private Interactable m_CurrentInteractable = null;
     private bool objCheck;
-	private string _objname;
+	private GameObject _objname;
 	
 
     // Start is called before the first frame update
     void Start()
     {
         objCheck = false;
-		_objname = "";
+		_objname = null;
     }
 
-    private void OnTriggerEnter(Collider other)
+	private void Update()
+	{
+		if (_objname != null)
+		{
+			if (_objname.transform.position != this.gameObject.transform.position)
+			{
+				Pickup(_objname.GetComponent<Collider>());
+			}
+		}
+	}
+
+	private void OnTriggerStay(Collider other)
     {
 		if (other.gameObject.layer == layer)
 		{
@@ -30,7 +41,7 @@ public class SnappingLocation : MonoBehaviour
 			if (other.gameObject.CompareTag(snapTag) && !objCheck && !other.gameObject.GetComponent<Interactable>().attachedToHand)
 			{
 				//Debug.Log("Checking tag");
-				if (_objname.Equals("") && other.gameObject.CompareTag(snapTag))
+				if (_objname == null && other.gameObject.CompareTag(snapTag))
 				{
 					//Debug.Log("Tag passed");
 					Place(other);
@@ -52,7 +63,7 @@ public class SnappingLocation : MonoBehaviour
 		Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();
 		rb.isKinematic = false;
 		objCheck = false;
-		_objname = "";
+		_objname = null;
 	}
 
     public void Place(Collider other)
@@ -62,7 +73,7 @@ public class SnappingLocation : MonoBehaviour
 		other.gameObject.transform.position = this.gameObject.transform.position;
         other.gameObject.transform.rotation = this.gameObject.transform.rotation;
 		objCheck = true;
-		_objname = other.gameObject.name;
+		_objname = other.gameObject;
     }
 
 	public bool IsSnapped()
