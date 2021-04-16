@@ -81,4 +81,8 @@ public class SnappingLocation : MonoBehaviour
 		return objCheck;
 	}
 
+	public GameObject GetSnappedObject()
+	{
+		return _objname;
+	}
 }

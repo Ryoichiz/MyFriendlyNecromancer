@@ -21,11 +21,24 @@ public class BackPackSnapping : MonoBehaviour
 		_objname = "";
 	}
 
-	private void Update()
+	private void OnTriggerStay(Collider other)
 	{
-		if(_container.Count != 0)
+		if (other.gameObject.layer == layer && !other.gameObject.GetComponent<Interactable>().attachedToHand)
 		{
-			if(_container[_container.Count - 1].transform.position != this.gameObject.transform.position)
+			//Debug.Log("Checking tag");
+			if (_container.Count <= _currentSlots && !_container.Contains(other.gameObject))
+			{
+				//Debug.Log("Tag passed");
+				Place(other);
+				if (_container.Count != 0)
+				{
+					_previous = _container[_container.Count - 1];
+				}
+			}
+		}
+		if (_container.Count != 0)
+		{
+			if (_container[_container.Count - 1].transform.position != this.gameObject.transform.position)
 			{
 				Pickup(_container[_container.Count - 1].GetComponent<Collider>());
 				if (_container.Count != 0)
@@ -33,27 +46,6 @@ public class BackPackSnapping : MonoBehaviour
 					_previous = _container[_container.Count - 1];
 				}
 			}
-		}
-		if (currentOther.gameObject.layer == layer && !currentOther.gameObject.GetComponent<Interactable>().attachedToHand)
-		{
-			//Debug.Log("Checking tag");
-			if (_container.Count <= _currentSlots && !_container.Contains(currentOther.gameObject))
-			{
-				//Debug.Log("Tag passed");
-				Place(currentOther);
-				if (_container.Count != 0)
-				{
-					_previous = _container[_container.Count - 1];
-				}
-			}
-		}
-	}
-
-	private void OnTriggerEnter(Collider other)
-	{
-		if (other.gameObject.GetComponent<Interactable>())
-		{
-			currentOther = other;
 		}
 	}
 

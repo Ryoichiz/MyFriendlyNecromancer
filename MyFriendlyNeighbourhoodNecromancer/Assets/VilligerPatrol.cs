@@ -7,7 +7,7 @@ using UnityEngine.AI;
 public class VilligerPatrol : MonoBehaviour
 {
 	[SerializeField]
-	LayerMask PlayerLayer;
+	int ZombieLayer = 15;
 
 	// Shows if agent is going to stop on each waypoint
 	[SerializeField]
@@ -80,6 +80,36 @@ public class VilligerPatrol : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		RaycastHit hit;
+		Vector3 direction = Player.position - this.gameObject.transform.position;
+		if (Physics.Raycast(transform.position, direction, out hit, Mathf.Infinity))
+		{
+			//Debug.Log(hit.transform.gameObject.layer);
+			if (hit.distance < _maxDistance && hit.transform.gameObject.layer == ZombieLayer)
+			{
+					//Debug.Log(hit.distance.ToString());
+					Debug.DrawRay(transform.position, direction, Color.green);
+					SetAttackDestination(hit.point);
+			}
+			else
+			{
+				_animate.SetBool("IsSprinting", false);
+				Debug.DrawRay(transform.position, direction, Color.red);
+			}
+
+		}
+		if (_attackingState && _navMeshCharacter.remainingDistance <= _stopDistance)
+		{
+			_swingState = true;
+			_animate.SetBool("IsSprinting", false);
+			_animate.SetBool("IsAttacking", true);
+		}
+		else
+		{
+			_attackingState = false;
+			_swingState = false;
+			_animate.SetBool("isAttacking", false);
+		}
 		if (_walkingState && _navMeshCharacter.remainingDistance <= _stopDistance && !_attackingState && !_swingState)
 		{
 			_walkingState = false;
@@ -126,6 +156,15 @@ public class VilligerPatrol : MonoBehaviour
 		}
 	}
 
+	private void SetAttackDestination(Vector3 target)
+	{
+		_animate.SetBool("IsStanding", false);
+		_animate.SetBool("IsWalking", false);
+		_navMeshCharacter.SetDestination(target);
+		_attackingState = true;
+		_animate.SetBool("IsSprinting", true);
+	}
+
 	// Changes next patrol point into a different one, making agent not always predictable
 	// allowing agent to walk forward and backward
 	private void ChangeDestination()
@@ -146,5 +185,16 @@ public class VilligerPatrol : MonoBehaviour
 				_currentPoint = _points.Count - 1;
 			}
 		}
+	}
+
+	public float calculate3DAngle(Vector3 VectorA, Vector3 VectorB)
+	{
+
+		float angle;
+
+		angle = Mathf.Acos((VectorA.x * VectorB.x + VectorA.y * VectorB.y + VectorA.z * VectorB.z) /
+			(Mathf.Sqrt(Mathf.Pow(VectorA.x, 2) + Mathf.Pow(VectorA.y, 2) + Mathf.Pow(VectorA.z, 2)))
+			* Mathf.Sqrt(Mathf.Pow(VectorB.x, 2) + Mathf.Pow(VectorB.y, 2) + Mathf.Pow(VectorB.z, 2)));
+		return angle;
 	}
 }

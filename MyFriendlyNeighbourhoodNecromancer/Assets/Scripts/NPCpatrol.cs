@@ -16,10 +16,6 @@ public class NPCpatrol : MonoBehaviour
 	[SerializeField]
 	float _waitingTime = 2f;
 
-	// Chance of agent changing directions
-	[SerializeField]
-	float _changingProbability = 0.1f;
-
 	// Waypoints for agent to follow
 	[SerializeField]
 	List<WayPoint> _points;
@@ -80,10 +76,9 @@ public class NPCpatrol : MonoBehaviour
 			//Debug.Log(hit.transform.gameObject.layer);
 			if (hit.distance < _maxDistance && hit.transform.gameObject.layer == PlayerLayer)
 			{
-				float angel = Vector3.Angle(transform.position, direction);
-				Debug.DrawRay(transform.position, direction, Color.red);
-				Debug.Log(angel);
-				if (Mathf.Abs(angel) > 110)
+				float angle = calculate3DAngle(transform.forward, direction);
+
+				if (float.IsNaN(angle))
 				{
 					//Debug.Log(hit.distance.ToString());
 					Debug.DrawRay(transform.position, direction, Color.green);
@@ -95,7 +90,7 @@ public class NPCpatrol : MonoBehaviour
 				_animate.SetBool("IsSprinting", false);
 				Debug.DrawRay(transform.position, direction, Color.red);
 			}
-			Debug.DrawRay(transform.position, direction, Color.red);
+
 		}
 		//Checking if patrol is close enough to player
 		if (_attackingState && _navMeshCharacter.remainingDistance <= _stopDistance)
@@ -127,7 +122,6 @@ public class NPCpatrol : MonoBehaviour
 				else
 				{
 					_animate.SetBool("IsWalking", true);
-					ChangeDestination();
 					SetDestination();
 				}
 			}
@@ -142,7 +136,6 @@ public class NPCpatrol : MonoBehaviour
 
 					_stationaryState = false;
 					_animate.SetBool("IsStanding", false);
-					ChangeDestination();
 					SetDestination();
 				}
 			}
@@ -169,23 +162,14 @@ public class NPCpatrol : MonoBehaviour
 		_animate.SetBool("IsSprinting", true);
 	}
 
-	private void ChangeDestination()
+	public float calculate3DAngle(Vector3 VectorA, Vector3 VectorB)
 	{
-		if (UnityEngine.Random.Range(0f, 1f) <= _changingProbability)
-		{
-			_patrolForwardState = !_patrolForwardState;
-		}
 
-		if (_patrolForwardState)
-		{
-			_currentPoint = (_currentPoint + 1) % _points.Count;
-		}
-		else
-		{
-			if (--_currentPoint < 0)
-			{
-				_currentPoint = _points.Count - 1;
-			}
-		}
+		float angle;
+
+		angle = Mathf.Acos((VectorA.x * VectorB.x + VectorA.y * VectorB.y + VectorA.z * VectorB.z) / 
+			(Mathf.Sqrt( Mathf.Pow(VectorA.x,2) + Mathf.Pow(VectorA.y, 2) + Mathf.Pow(VectorA.z, 2)))
+			* Mathf.Sqrt(Mathf.Pow(VectorB.x,2) + Mathf.Pow(VectorB.y, 2) + Mathf.Pow(VectorB.z, 2)));
+		return angle;
 	}
 }
