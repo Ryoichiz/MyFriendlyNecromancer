@@ -85,4 +85,9 @@ public class SnappingLocation : MonoBehaviour
 	{
 		return _objname;
 	}
+
+	public string GetSnappedObjectName()
+	{
+		return _objname.name;
+	}
 }
