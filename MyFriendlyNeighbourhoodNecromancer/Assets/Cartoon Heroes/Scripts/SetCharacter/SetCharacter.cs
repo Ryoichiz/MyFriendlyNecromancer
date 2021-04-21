@@ -232,6 +232,11 @@ namespace CartoonHeroes
             SetGraySkeletonVisibility(!VisibleItems());
             return removeList;
         }
+
+		public ItemGroup[] GetAllItems()
+		{
+			return itemGroups;
+		}
     }
 }
 

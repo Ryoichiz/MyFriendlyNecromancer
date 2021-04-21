@@ -53,7 +53,7 @@ public class VilligerPatrol : MonoBehaviour
     {
 		_navMeshCharacter = this.GetComponent<NavMeshAgent>();
 		_animate = this.GetComponent<Animator>();
-		Player = GameObject.Find("Player").transform;
+		Player = GameObject.Find("Zombie_1").transform;
 		ParentPoint = GameObject.Find("VillageWaypoints");
 		foreach (Transform child in ParentPoint.transform)
 		{

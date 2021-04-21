@@ -133,6 +133,8 @@ MonoBehaviour:
   - {fileID: 3760687959418518622, guid: f683c18e65e0c4f4eab96980e6a090ec, type: 3}
   - {fileID: 2557877387663418721, guid: fc1c6b9dc4c97224cb9958f341704e54, type: 3}
   - {fileID: 165676705607139763, guid: b71c4daf2ac75d74fb05e4ca93d8ecc6, type: 3}
+  - {fileID: 6456456138453844077, guid: 78adb7e21ec707d4ca35abfa9b513617, type: 3}
+  - {fileID: 5832737073022174625, guid: 46b5ad82f7a867745aef237704e76fa6, type: 3}
 --- !u!54 &4734834703061389166
 Rigidbody:
   m_ObjectHideFlags: 0

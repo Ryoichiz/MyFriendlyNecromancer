@@ -113,11 +113,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShardsObject: {fileID: 1890151923002161041}
   Parts:
-  - {fileID: 165676705607139763, guid: b71c4daf2ac75d74fb05e4ca93d8ecc6, type: 3}
-  - {fileID: 3683221875399719139, guid: babe3bf3a054bfe4fa6779300c3c0769, type: 3}
-  - {fileID: 2557877387663418721, guid: fc1c6b9dc4c97224cb9958f341704e54, type: 3}
-  - {fileID: 104942451621767546, guid: 118daceea1975df4fb4eb0980c56fce7, type: 3}
-  - {fileID: 3760687959418518622, guid: f683c18e65e0c4f4eab96980e6a090ec, type: 3}
+  - {fileID: 5502268320030009287, guid: 57aa060ed1a1ea245ac53239d747a593, type: 3}
+  - {fileID: 5869061267298741979, guid: f3bc2b06c7947fe4586f535e884973ae, type: 3}
+  - {fileID: 7399104129834661773, guid: 37611f6f00d4f64459d3fb310c9788f4, type: 3}
+  - {fileID: 9091496684325372443, guid: 6c4aaf728e06bd84b88d0a9809d68276, type: 3}
+  - {fileID: 6508225567689464685, guid: be7d4b1e6e6aeb14db1b5e14164b32c8, type: 3}
+  - {fileID: 6456456138453844077, guid: 78adb7e21ec707d4ca35abfa9b513617, type: 3}
+  - {fileID: 5832737073022174625, guid: 46b5ad82f7a867745aef237704e76fa6, type: 3}
+  - {fileID: 4620032721492255627, guid: 4292fe9ad9c4b484e84fdb19876f9979, type: 3}
+  - {fileID: 3256747759593800488, guid: df43f4dd2d8afc74d9ba98de655dd8b3, type: 3}
+  - {fileID: 7605497039993634707, guid: ba3f297cadc8b3145b0c6992210ef05e, type: 3}
+  - {fileID: 3584313440407041827, guid: 2bf7f42ae1e677f4db18fca79dc91941, type: 3}
+  - {fileID: 2539326238798417978, guid: ae900358cf212384989fcf6a36778549, type: 3}
 --- !u!54 &1424040809
 Rigidbody:
   m_ObjectHideFlags: 0
