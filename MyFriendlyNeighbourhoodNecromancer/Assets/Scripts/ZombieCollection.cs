@@ -35,9 +35,12 @@ public class ZombieCollection : MonoBehaviour
 	private bool _head = false;
 	private bool _collected = false;
 
+	private ZombieController _zombieStatus;
+
     // Start is called before the first frame update
     void Start()
     {
+		_zombieStatus = GameObject.Find("Zombie_1").GetComponent<ZombieController>();
 		items = characterselection.GetAllItems();
 		//		characterselection = 
 		foreach (Transform child in this.gameObject.transform)
@@ -68,12 +71,10 @@ public class ZombieCollection : MonoBehaviour
 			if (_legsCount >= 1)
 			{
 				IGameObjects.Add(Instantiate(Bottom[0], SpawnLegs.position, SpawnLegs.rotation));
-				characterselection.AddItem(items[0], 0);
-			} 
+			}
 			else
 			{
 				IGameObjects.Add(Instantiate(Bottom[1], SpawnLegs.position, SpawnLegs.rotation));
-				characterselection.AddItem(items[0], 1);
 			}
 			_legs = true;
 		}
@@ -103,12 +104,10 @@ public class ZombieCollection : MonoBehaviour
 			if (_torsoCount >= 2)
 			{
 				IGameObjects.Add(Instantiate(Torso[0], SpawnLegs.position, SpawnLegs.rotation));
-				characterselection.AddItem(items[1], 0);
 			}
 			else
 			{
 				IGameObjects.Add(Instantiate(Torso[1], SpawnLegs.position, SpawnLegs.rotation));
-				characterselection.AddItem(items[1], 1);
 			}
 			_torso = true;
 		}
@@ -116,16 +115,8 @@ public class ZombieCollection : MonoBehaviour
 		{
 			SnapLocations[0].SetActive(false);
 			_head = true;
-			if(SnapLocations[0].GetComponent<SnappingLocation>().GetSnappedObjectName() == "Male_Head_Blender")
-			{
-				characterselection.AddItem(items[2], 0);
-			}
-			else
-			{
-				characterselection.AddItem(items[2], 1);
-			}
 		}
-		if(CheckIfCollected())
+		if(_collected = false && CheckIfCollected())
 		{
 
 			SnapLocations[0].GetComponent<SnappingLocation>().GetSnappedObject().SetActive(false);
@@ -133,7 +124,40 @@ public class ZombieCollection : MonoBehaviour
 			{
 				other.SetActive(false);
 			}
-			characterselection.gameObject.SetActive(true);
+			if (_legsCount >= 1)
+			{
+				IGameObjects.Add(Instantiate(Bottom[0], SpawnLegs.position, SpawnLegs.rotation));
+				characterselection.AddItem(items[0], 0);
+				_zombieStatus.AddHealth(50);
+			}
+			else
+			{
+				IGameObjects.Add(Instantiate(Bottom[1], SpawnLegs.position, SpawnLegs.rotation));
+				characterselection.AddItem(items[0], 1);
+				_zombieStatus.AddHealth(100);
+			}
+			if (SnapLocations[0].GetComponent<SnappingLocation>().GetSnappedObjectName() == "Male_Head_Blender")
+			{
+				characterselection.AddItem(items[2], 0);
+				_zombieStatus.AddHealth(50);
+			}
+			else
+			{
+				characterselection.AddItem(items[2], 1);
+				_zombieStatus.AddHealth(100);
+			}
+			if (_torsoCount >= 2)
+			{
+				IGameObjects.Add(Instantiate(Torso[0], SpawnLegs.position, SpawnLegs.rotation));
+				characterselection.AddItem(items[1], 0);
+				_zombieStatus.AddHealth(50);
+			}
+			else
+			{
+				IGameObjects.Add(Instantiate(Torso[1], SpawnLegs.position, SpawnLegs.rotation));
+				characterselection.AddItem(items[1], 1);
+				_zombieStatus.AddHealth(100);
+			}
 		}
 
 	}

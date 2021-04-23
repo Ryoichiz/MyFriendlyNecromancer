@@ -1026,7 +1026,7 @@ Transform:
   m_GameObject: {fileID: 459749012039873846}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 593.0504, y: 0.0070610046, z: 594.56445}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 465042032167653902}
   - {fileID: 462290375796747792}
@@ -1110,16 +1110,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ffa4544c40305f43b1c3a21ce77f96f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerLayer:
+  IgnoreLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 16384
+  ZombieLayer: 15
   _patrolStationary: 0
   _waitingTime: 2
   _changingProbability: 0.1
   ParentPoint: {fileID: 0}
   _animate: {fileID: 0}
-  _maxDistance: 1
-  _stopDistance: 1
+  _maxDistance: 10
+  _stopDistance: 3
+  rotationSpeed: 10
 --- !u!195 &-3777394259701478469
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1133,8 +1135,8 @@ NavMeshAgent:
   m_Speed: 0.75
   m_Acceleration: 2
   avoidancePriority: 50
-  m_AngularSpeed: 180
-  m_StoppingDistance: 1
+  m_AngularSpeed: 250
+  m_StoppingDistance: 3
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
