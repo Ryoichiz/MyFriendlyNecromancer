@@ -29,20 +29,23 @@ public class ZombieController : MonoBehaviour
 	private GameObject _currentTarget;
 	private float shortestDistance = Mathf.Infinity;
 
+	//Attacking statuses
+	//---------------------------------------
 	private float _health = 500;
 
 	private float _attackDamage = 20f;
 
 	private float _attackLength = 1f;
-
+	//---------------------------------------
+	//States to help track of animations
+	//---------------------------------------
 	private bool _walkingState;
 	private bool _attackingState;
 	private bool _swingState;
 	private bool _isDead;
-
+	//--------------------------------------
 	float _Timer;
 
-	// Start is called before the first frame update
 	void Start()
     {
 		_isDead = false;
@@ -54,20 +57,22 @@ public class ZombieController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		//Once collected zombie gets activated once
 		if (collection.CheckIfCollected() && oneTimeRun == 0)
 		{
 			oneTimeRun++;
 			CollectVilligers();
 			ZombieAwake();
 		}
+		//Till zombie is alive keep on attacking villagers
 		if (!_isDead && oneTimeRun == 1)
 		{
 			CalculateShortestDistance();
+			//Checking how far is the current target
 			if (_walkingState && _navMeshAgent.remainingDistance <= _stopDistance)
 			{
 				_walkingState = false;
 				_attackingState = true;
-				//CalculateShortestDistance();
 				{
 					_animate.SetBool("IsWalking", true);
 				}
@@ -79,7 +84,6 @@ public class ZombieController : MonoBehaviour
 			}
 			if (!_walkingState && shortestDistance <= _stopDistance && !_swingState)
 			{
-				//Debug.Log(_navMeshAgent.remainingDistance);
 				_Timer = 0;
 				_swingState = true;
 			}
@@ -103,7 +107,6 @@ public class ZombieController : MonoBehaviour
 			{
 				_isDead = true;
 			}
-			//RotateTowards(_currentTarget.transform);
 		}
 		else if (_isDead && oneTimeRun == 1)
 		{
@@ -111,23 +114,22 @@ public class ZombieController : MonoBehaviour
 		}
 	}
 
+	//Checks every villiger and returns the closest one to zombie
 	private void CalculateShortestDistance()
 	{
 		shortestDistance = Mathf.Infinity;
 		foreach (GameObject other in _villigers)
 		{
-			//if (other.GetComponent<VilligerPatrol>().CheckIfDead())
-			//{
 				float tempDistance = Vector3.Distance(other.transform.position, this.gameObject.transform.position);
 				if (tempDistance < shortestDistance)
 				{
 					shortestDistance = tempDistance;
 					_currentTarget = other;
 				}
-			//}
 		}
 	}
 
+	//Gets all villigers into one list
 	private void CollectVilligers()
 	{
 		_villigers = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "WeakViligerFemale(Clone)").ToList();
@@ -135,15 +137,16 @@ public class ZombieController : MonoBehaviour
 		_villigers.AddRange(_tempList);
 	}
 
+	//Changes current destination
 	private void SetTarget()
 	{
 		Vector3 targetVector = _currentTarget.transform.position;
 		_navMeshAgent.SetDestination(targetVector);
 		_animate.SetBool("IsWalking", true);
 		_animate.SetBool("IsAttacking", false);
-		//_attackingState = true;
 	}
 
+	//Once zombie gets activated its first destination set to road
 	public void ZombieAwake()
 	{
 		Vector3 targetVector = StartingPoint.transform.position;
@@ -152,6 +155,7 @@ public class ZombieController : MonoBehaviour
 		_animate.SetBool("IsWalking", true);
 	}
 
+	//Rotating zombie towards player once close enough
 	private void RotateTowards(Transform target)
 	{
 		Vector3 direction = (target.position - transform.position).normalized;
@@ -161,6 +165,8 @@ public class ZombieController : MonoBehaviour
 		_animate.SetBool("IsWalking", false);
 	}
 
+	//Getting attacking statuses
+	//-----------------------------------------
 	public float GetHealth()
 	{
 		return _health;
@@ -179,11 +185,11 @@ public class ZombieController : MonoBehaviour
 	public void TakeDamage(float value)
 	{
 		_health -= value;
-		Debug.Log(_health);
 	}
 
 	public bool CheckIfDead()
 	{
 		return _isDead;
 	}
+	//--------------------------------------------
 }

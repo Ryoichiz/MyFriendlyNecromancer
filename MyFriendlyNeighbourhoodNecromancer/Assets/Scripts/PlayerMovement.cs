@@ -15,6 +15,10 @@ public class PlayerMovement : MonoBehaviour
 
 	private CharacterController m_CharacterController = null;
 	[SerializeField] Transform m_Head;
+	private bool IsAlive = true;
+
+	[SerializeField]
+	public Animator animate;
 
 	private void Awake()
 	{
@@ -29,7 +33,14 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
 		HandleHeight();
-		CalculateMovement();
+		if (IsAlive)
+		{
+			CalculateMovement();
+		}
+		if(!IsAlive)
+		{
+			animate.SetBool("FadeTime", true);
+		}
     }
 
 	private void CalculateMovement()
@@ -83,4 +94,13 @@ public class PlayerMovement : MonoBehaviour
 		m_CharacterController.center = newCenter;
 	}
 
+	public bool CheckIsAlive()
+	{
+		return IsAlive;
+	}
+
+	public void GetAttacked()
+	{
+		IsAlive = false;
+	}
 }

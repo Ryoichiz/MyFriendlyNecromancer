@@ -17,9 +17,9 @@ GameObject:
   - component: {fileID: 6941361747650666368}
   - component: {fileID: 2918044764635583486}
   - component: {fileID: 5898889653269196190}
-  m_Layer: 0
-  m_Name: Male_Head_Blender 1
-  m_TagString: Untagged
+  m_Layer: 12
+  m_Name: Male_Head_Blender_Red
+  m_TagString: HeadPart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

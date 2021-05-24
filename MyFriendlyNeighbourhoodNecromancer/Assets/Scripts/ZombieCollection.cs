@@ -34,6 +34,7 @@ public class ZombieCollection : MonoBehaviour
 	private bool _torso = false;
 	private bool _head = false;
 	private bool _collected = false;
+	private bool _oneTimeRun = false;
 
 	private ZombieController _zombieStatus;
 
@@ -78,7 +79,7 @@ public class ZombieCollection : MonoBehaviour
 			}
 			_legs = true;
 		}
-		if(SnapLocations[3].GetComponent<SnappingLocation>().IsSnapped() && SnapLocations[4].GetComponent<SnappingLocation>().IsSnapped() && !_torso)
+		if(SnapLocations[3].GetComponent<SnappingLocation>().IsSnapped() && SnapLocations[4].GetComponent<SnappingLocation>().IsSnapped() && SnapLocations[5].GetComponent<SnappingLocation>().IsSnapped() && !_torso)
 		{
 			SnappingLocation temp = SnapLocations[3].GetComponent<SnappingLocation>();
 			temp.GetSnappedObject().SetActive(false);
@@ -103,11 +104,11 @@ public class ZombieCollection : MonoBehaviour
 			}
 			if (_torsoCount >= 2)
 			{
-				IGameObjects.Add(Instantiate(Torso[0], SpawnLegs.position, SpawnLegs.rotation));
+				IGameObjects.Add(Instantiate(Torso[0], SpawnTorso.position, SpawnTorso.rotation));
 			}
 			else
 			{
-				IGameObjects.Add(Instantiate(Torso[1], SpawnLegs.position, SpawnLegs.rotation));
+				IGameObjects.Add(Instantiate(Torso[1], SpawnTorso.position, SpawnTorso.rotation));
 			}
 			_torso = true;
 		}
@@ -116,9 +117,8 @@ public class ZombieCollection : MonoBehaviour
 			SnapLocations[0].SetActive(false);
 			_head = true;
 		}
-		if(_collected = false && CheckIfCollected())
+		if(_collected = true && CheckIfCollected() && !_oneTimeRun)
 		{
-
 			SnapLocations[0].GetComponent<SnappingLocation>().GetSnappedObject().SetActive(false);
 			foreach(GameObject other in IGameObjects)
 			{
@@ -126,13 +126,13 @@ public class ZombieCollection : MonoBehaviour
 			}
 			if (_legsCount >= 1)
 			{
-				IGameObjects.Add(Instantiate(Bottom[0], SpawnLegs.position, SpawnLegs.rotation));
+				//IGameObjects.Add(Instantiate(Bottom[0], SpawnLegs.position, SpawnLegs.rotation));
 				characterselection.AddItem(items[0], 0);
 				_zombieStatus.AddHealth(50);
 			}
 			else
 			{
-				IGameObjects.Add(Instantiate(Bottom[1], SpawnLegs.position, SpawnLegs.rotation));
+				//IGameObjects.Add(Instantiate(Bottom[1], SpawnLegs.position, SpawnLegs.rotation));
 				characterselection.AddItem(items[0], 1);
 				_zombieStatus.AddHealth(100);
 			}
@@ -148,16 +148,17 @@ public class ZombieCollection : MonoBehaviour
 			}
 			if (_torsoCount >= 2)
 			{
-				IGameObjects.Add(Instantiate(Torso[0], SpawnLegs.position, SpawnLegs.rotation));
+				//IGameObjects.Add(Instantiate(Torso[0], SpawnTorso.position, SpawnTorso.rotation));
 				characterselection.AddItem(items[1], 0);
 				_zombieStatus.AddHealth(50);
 			}
 			else
 			{
-				IGameObjects.Add(Instantiate(Torso[1], SpawnLegs.position, SpawnLegs.rotation));
+				//IGameObjects.Add(Instantiate(Torso[1], SpawnTorso.position, SpawnTorso.rotation));
 				characterselection.AddItem(items[1], 1);
 				_zombieStatus.AddHealth(100);
 			}
+			_oneTimeRun = true;
 		}
 
 	}

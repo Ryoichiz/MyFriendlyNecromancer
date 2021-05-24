@@ -48,6 +48,9 @@ public class VilligerPatrol : MonoBehaviour
 	NavMeshAgent _navMeshCharacter;
 	ZombieController Zombie;
 	Transform Player;
+
+	//States helping to keep track of animations
+	//-----------------------------------------
 	int _currentPoint;
 	bool _stationaryState;
 	bool _walkingState;
@@ -55,6 +58,7 @@ public class VilligerPatrol : MonoBehaviour
 	bool _attackingState;
 	bool _swingState;
 	bool _isDead;
+	//-----------------------------------------
 	float _Timer;
 
 	private float _health = 100;
@@ -96,19 +100,18 @@ public class VilligerPatrol : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		//Keeps on working till villiger is alive
 		if (!_isDead)
 		{
 			RaycastHit hit;
 			Vector3 direction = Player.position - this.gameObject.transform.position;
+			//RayCast checking how far is player
 			if (Physics.Raycast(transform.position, direction, out hit, Mathf.Infinity, ~IgnoreLayer))
 			{
-				//Debug.Log(hit.transform.gameObject.layer);
-				//Debug.Log(hit.distance.ToString());
 				if (hit.distance < _maxDistance && hit.transform.gameObject.layer == ZombieLayer)
 				{
 					if (!_swingState && hit.distance >= _stopDistance)
 					{
-						//Debug.Log(hit.distance.ToString());
 						Debug.DrawRay(transform.position, direction, Color.green);
 						SetAttackDestination(hit.point);
 					}
@@ -120,8 +123,10 @@ public class VilligerPatrol : MonoBehaviour
 				}
 
 			}
+			//Checking zombie is still alive
 			if (!Zombie.CheckIfDead())
 			{
+				//If zombie alive then change animation and state to attacking
 				if (_attackingState && _navMeshCharacter.remainingDistance <= _stopDistance && !_swingState)
 				{
 					RotateTowards(Player);
@@ -133,8 +138,6 @@ public class VilligerPatrol : MonoBehaviour
 				}
 				else
 				{
-					//_attackingState = false;
-					//_swingState = false;
 					_walkingState = true;
 					_animate.SetBool("isAttacking", false);
 				}
@@ -212,6 +215,7 @@ public class VilligerPatrol : MonoBehaviour
 		}
 	}
 
+	// Function used once enemy is detected and in range of detection
 	private void SetAttackDestination(Vector3 target)
 	{
 		_animate.SetBool("IsStanding", false);
@@ -253,6 +257,7 @@ public class VilligerPatrol : MonoBehaviour
 
 	}
 
+	// Functions used in attacking states
 	public float GetHealth()
 	{
 		return _health;
@@ -266,7 +271,6 @@ public class VilligerPatrol : MonoBehaviour
 	public void TakeDamage(float value)
 	{
 		_health -= value;
-		//Debug.Log(_health);
 	}
 
 	public bool CheckIfDead()

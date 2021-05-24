@@ -32,6 +32,9 @@ public class NPCpatrol : MonoBehaviour
 	[SerializeField]
 	float _stopDistance = 1.0f;
 
+	[SerializeField]
+	float _changingProbability = 0.001f;
+
 	NavMeshAgent _navMeshCharacter;
 	Transform Player;
 	int _currentPoint;
@@ -41,6 +44,9 @@ public class NPCpatrol : MonoBehaviour
 	bool _attackingState;
 	bool _swingState;
 	float _Timer;
+
+	[SerializeField]
+	PlayerMovement PlayerControls;
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -98,6 +104,10 @@ public class NPCpatrol : MonoBehaviour
 			_swingState = true;
 			_animate.SetBool("IsSprinting", false);
 			_animate.SetBool("IsAttacking", true);
+			if(PlayerControls.CheckIsAlive())
+			{
+				PlayerControls.GetAttacked();
+			}
 		}
 		else
 		{
@@ -122,6 +132,7 @@ public class NPCpatrol : MonoBehaviour
 				else
 				{
 					_animate.SetBool("IsWalking", true);
+					ChangeDestination();
 					SetDestination();
 				}
 			}
@@ -133,9 +144,9 @@ public class NPCpatrol : MonoBehaviour
 				_animate.SetBool("IsWalking", false);
 				if (_Timer >= _waitingTime)
 				{
-
 					_stationaryState = false;
 					_animate.SetBool("IsStanding", false);
+					ChangeDestination();
 					SetDestination();
 				}
 			}
@@ -147,6 +158,7 @@ public class NPCpatrol : MonoBehaviour
 		if (_points != null)
 		{
 			Vector3 targetVector = _points[_currentPoint].transform.position;
+			
 			_navMeshCharacter.SetDestination(targetVector);
 			_walkingState = true;
 			_animate.SetBool("IsWalking", true);
@@ -160,6 +172,26 @@ public class NPCpatrol : MonoBehaviour
 		_navMeshCharacter.SetDestination(target);
 		_attackingState = true;
 		_animate.SetBool("IsSprinting", true);
+	}
+
+	private void ChangeDestination()
+	{
+		if (UnityEngine.Random.Range(0f, 1f) <= _changingProbability)
+		{
+			_patrolForwardState = !_patrolForwardState;
+		}
+
+		if (_patrolForwardState)
+		{
+			_currentPoint = (_currentPoint + 1) % _points.Count;
+		}
+		else
+		{
+			if (--_currentPoint < 0)
+			{
+				_currentPoint = _points.Count - 1;
+			}
+		}
 	}
 
 	public float calculate3DAngle(Vector3 VectorA, Vector3 VectorB)

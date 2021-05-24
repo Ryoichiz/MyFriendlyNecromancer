@@ -15,7 +15,6 @@ public class BackPackSnapping : MonoBehaviour
 	private GameObject _previous = null;
 	private Collider currentOther;
 
-	// Start is called before the first frame update
 	void Start()
 	{
 		_objname = "";
@@ -23,12 +22,12 @@ public class BackPackSnapping : MonoBehaviour
 
 	private void OnTriggerStay(Collider other)
 	{
+		// Check if correct layer and if object is being held at the moment
 		if (other.gameObject.layer == layer && !other.gameObject.GetComponent<Interactable>().attachedToHand)
 		{
-			//Debug.Log("Checking tag");
+			// Check if inventory not full yet and if it doesnt hold same object yet
 			if (_container.Count <= _currentSlots && !_container.Contains(other.gameObject))
 			{
-				//Debug.Log("Tag passed");
 				Place(other);
 				if (_container.Count != 0)
 				{
@@ -36,6 +35,7 @@ public class BackPackSnapping : MonoBehaviour
 				}
 			}
 		}
+		//If inventory not empty then allowing for player to pick it up from back
 		if (_container.Count != 0)
 		{
 			if (_container[_container.Count - 1].transform.position != this.gameObject.transform.position)
